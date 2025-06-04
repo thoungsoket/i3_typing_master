@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Forgot Password - TypingMaster</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #2563eb 100%);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Header */
+    .header {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      color: white;
+      font-size: 1.5rem;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    .logo::before {
+      content: "⌨️";
+      margin-right: 0.5rem;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      transition: all 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .auth-buttons {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .btn {
+      padding: 0.5rem 1.5rem;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      text-align: center;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: white;
+      border: 2px solid white;
+    }
+
+    .btn-outline:hover {
+      background: white;
+      color: #4f46e5;
+    }
+
+    .btn-primary {
+      background: #06b6d4;
+      color: white;
+      border: 2px solid #06b6d4;
+    }
+
+    .btn-primary:hover {
+      background: #0891b2;
+      border-color: #0891b2;
+      transform: translateY(-2px);
+    }
+
+    /* Main Content */
+    .main-content {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    .forgot-password-container {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      border-radius: 20px;
+      padding: 3rem 2.5rem;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      width: 100%;
+      max-width: 450px;
+      animation: slideUp 0.6s ease-out;
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .forgot-password-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .forgot-password-header .icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      color: #4f46e5;
+    }
+
+    .forgot-password-header h1 {
+      color: #4f46e5;
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .forgot-password-header p {
+      color: #6b7280;
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+      display: block;
+      color: #374151;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 1rem;
+      border: 2px solid #e5e7eb;
+      border-radius: 10px;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      background: white;
+    }
+
+    .form-control:focus {
+      outline: none;
+      border-color: #4f46e5;
+      box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+    }
+
+    .reset-btn {
+      width: 100%;
+      padding: 1rem;
+      background: linear-gradient(135deg, #4f46e5, #7c3aed);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-bottom: 1.5rem;
+    }
+
+    .reset-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(79, 70, 229, 0.3);
+    }
+
+    .reset-btn:disabled {
+      background: #9ca3af;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+
+    .back-to-login {
+      text-align: center;
+      margin-top: 2rem;
+    }
+
+    .back-to-login a {
+      color: #4f46e5;
+      text-decoration: none;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.3s ease;
+    }
+
+    .back-to-login a:hover {
+      text-decoration: underline;
+      transform: translateX(-2px);
+    }
+
+    .success-message {
+      background: #10b981;
+      color: white;
+      padding: 1rem;
+      border-radius: 10px;
+      margin-bottom: 1.5rem;
+      text-align: center;
+      display: none;
+    }
+
+    .error-message {
+      background: #ef4444;
+      color: white;
+      padding: 1rem;
+      border-radius: 10px;
+      margin-bottom: 1.5rem;
+      text-align: center;
+      display: none;
+    }
+
+    .info-box {
+      background: #f0f9ff;
+      border: 1px solid #0ea5e9;
+      border-radius: 10px;
+      padding: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .info-box .info-icon {
+      color: #0ea5e9;
+      font-weight: bold;
+      margin-right: 0.5rem;
+    }
+
+    .info-box p {
+      color: #0c4a6e;
+      font-size: 0.9rem;
+      margin: 0;
+    }
+
+    @media (max-width: 768px) {
+      .header {
+        padding: 1rem;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .forgot-password-container {
+        margin: 1rem;
+        padding: 2rem 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+<!-- Header -->
+<header class="header">
+  <a href="First landing page.html" class="logo">
+    TypingMaster
+  </a>
+  <nav>
+    <ul class="nav-links">
+      <li><a href="First landing page.html#home">Home</a></li>
+      <li><a href="6.Usertypingtestpage.html">Typing Test</a></li>
+      <li><a href="First landing page.html#features">Features</a></li>
+      <li><a href="First landing page.html#about">About</a></li>
+    </ul>
+  </nav>
+  <div class="auth-buttons">
+    <a href="4.UserLoginPage.html" class="btn btn-outline">Login</a>
+    <a href="#register" class="btn btn-primary">Register</a>
+  </div>
+</header>
+
+<!-- Main Content -->
+<main class="main-content">
+  <div class="forgot-password-container">
+    <div class="forgot-password-header">
+      <div class="icon">🔐</div>
+      <h1>Forgot Password?</h1>
+      <p>No worries! Enter your email address and we'll send you a link to reset your password.</p>
+    </div>
+
+    <div class="success-message" id="successMessage">
+      <strong>✅ Email sent successfully!</strong><br>
+      Please check your inbox and follow the instructions to reset your password.
+    </div>
+
+    <div class="error-message" id="errorMessage">
+      <strong>❌ Error!</strong><br>
+      <span id="errorText">Something went wrong. Please try again.</span>
+    </div>
+
+    <div class="info-box">
+      <span class="info-icon">ℹ️</span>
+      <p>We'll send a secure link to your email that will allow you to create a new password. The link will expire in 24 hours for security purposes.</p>
+    </div>
+
+    <form id="forgotPasswordForm">
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" class="form-control" placeholder="Enter your registered email" required>
+      </div>
+
+      <button type="submit" class="reset-btn" id="resetBtn">
+        Send Reset Link
+      </button>
+    </form>
+
+    <div class="back-to-login">
+      <a href="4.UserLoginPage.html">
+        ← Back to Login
+      </a>
+    </div>
+  </div>
+</main>
+
+<script>
+  document.getElementById('forgotPasswordForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const email = document.getElementById('email').value;
+    const resetBtn = document.getElementById('resetBtn');
+    const successMessage = document.getElementById('successMessage');
+    const errorMessage = document.getElementById('errorMessage');
+    const errorText = document.getElementById('errorText');
+
+    // Hide any previous messages
+    successMessage.style.display = 'none';
+    errorMessage.style.display = 'none';
+
+    // Basic email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      errorText.textContent = 'Please enter a valid email address.';
+      errorMessage.style.display = 'block';
+      return;
+    }
+
+    // Disable button and show loading state
+    resetBtn.disabled = true;
+    resetBtn.textContent = 'Sending...';
+
+    // Simulate API call
+    setTimeout(() => {
+      // Simulate successful response (in real app, this would be an actual API call)
+      const isSuccess = Math.random() > 0.1; // 90% success rate for demo
+
+      if (isSuccess) {
+        successMessage.style.display = 'block';
+        document.getElementById('forgotPasswordForm').style.display = 'none';
+      } else {
+        errorText.textContent = 'Email not found in our system. Please check your email address or register for a new account.';
+        errorMessage.style.display = 'block';
+      }
+
+      // Re-enable button
+      resetBtn.disabled = false;
+      resetBtn.textContent = 'Send Reset Link';
+    }, 2000);
+  });
+
+  // Add smooth animations for form interactions
+  document.getElementById('email').addEventListener('focus', function() {
+    this.parentElement.style.transform = 'scale(1.02)';
+  });
+
+  document.getElementById('email').addEventListener('blur', function() {
+    this.parentElement.style.transform = 'scale(1)';
+  });
+</script>
+</body>
+</html>
